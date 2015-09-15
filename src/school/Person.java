@@ -5,7 +5,7 @@ public class Person {
         Male,Female
     }
     private static int currentPeopleIndex = 0;
-//    private static Person people[] = new Person[numPeople];
+    private Course theCourse;
     private static ArrayList<Person> people = new ArrayList<Person>();
     private String name;
     private Gender gender;
@@ -86,6 +86,16 @@ public class Person {
             }
         }
     }
+    
+    public void addCourse(Course _course)
+    {
+        if(_course == null)
+        {
+            theCourse = _course;
+            _course.addPerson(this);
+        }
+    }
+    
     public String toString()
     {
         return(name + ". " + gender + " and " + weight + " pounds.");

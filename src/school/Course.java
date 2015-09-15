@@ -7,6 +7,7 @@ public class Course {
         Math, Science, English, History, Elective, PE, Language
     }
     private static ArrayList<Course> courses = new ArrayList<Course>();
+    private Person thePerson;
     private String name;
     private int period;
     private Type type;
@@ -76,6 +77,15 @@ public class Course {
                 if(temp.getType() == _type)
                 System.out.println(temp.getName());
             }
+        }
+    }
+    
+    public void addPerson(Person _person)
+    {
+        if(_person == null)
+        {
+            thePerson = _person;
+            _person.addCourse(this);
         }
     }
     
