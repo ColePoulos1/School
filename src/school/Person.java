@@ -14,9 +14,9 @@ public class Person {
     private int birthDay;
     private int birthMonth;
     private int birthYear;
-    public static Person addPerson(String _name, Gender _gender, int _weight)
+    public static Person addPerson(String _name, Gender _gender, int _weight, int _month, int _day, int _year)
     {
-        Person temp = new Person(_name,_gender, _weight);
+        Person temp = new Person(_name,_gender, _weight, _month, _day, _year);
         people.add(temp);
         return(temp);
     }
@@ -26,11 +26,14 @@ public class Person {
         gender = Gender.Male;
         weight = 1;
     }
-    Person(String _name, Gender _gender, int _weight)
+    Person(String _name, Gender _gender, int _weight, int _month, int _day, int _year)
     {
         name = _name;
         gender = _gender;
         weight = _weight;
+        birthDay = _day;
+        birthMonth = _month;
+        birthYear = _year;
     }
     public void setGender(Gender _gender)
     {
@@ -56,7 +59,7 @@ public class Person {
     {
         return(weight);
     }
-    public void setBirthDate(int _day, int _month, int _year)
+    public void setBirthDate(int _month, int _day, int _year)
     {
         birthDay = _day;
         birthMonth = _month;
@@ -68,7 +71,11 @@ public class Person {
         int curday = now.get(Calendar.DAY_OF_MONTH);
         int curmonth = now.get(Calendar.MONTH) + 1;
         int curyear = now.get(Calendar.YEAR);
-        return(0);
+        int age = curyear - birthYear -1;
+        if(curmonth >= birthMonth)
+            if(curday >= birthDay)
+                age++;
+        return(age);
         
     }
     public static void printNames()
