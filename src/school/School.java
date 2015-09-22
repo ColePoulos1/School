@@ -29,5 +29,10 @@ public class School {
         Course.printNames(Course.Type.Math);
         System.out.println(" ");
         System.out.println(jill.getAge());
+        System.out.println(" ");
+        
+        Student craig = Student.addStudent("Craig",Person.Gender.Male,168,2,4,25,11);
+       // Student bobby = new Student("Bobby",Person.Gender.Male,168,2,4,25,11);
+        System.out.println(craig.getName());
     }
 }

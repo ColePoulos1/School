@@ -20,6 +20,10 @@ public class Person {
         people.add(temp);
         return(temp);
     }
+    public static void addPerson(Person _person)
+    {
+        people.add(_person);
+    }
     Person()
     {
         name = "Blank";
