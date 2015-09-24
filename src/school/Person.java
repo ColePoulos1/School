@@ -6,8 +6,7 @@ public class Person {
         Male,Female
     }
     private static int currentPeopleIndex = 0;
-    private Course theCourse;
-    private static ArrayList<Person> people = new ArrayList<Person>();
+    protected static ArrayList<Person> people = new ArrayList<Person>();
     private String name;
     private Gender gender;
     private int weight;
@@ -114,15 +113,6 @@ public class Person {
             {
                 System.out.println(temp.getName() + " is " + temp.getWeight() + " pounds");
             }
-        }
-    }
-    
-    public void addCourse(Course _course)
-    {
-        if(_course == null)
-        {
-            theCourse = _course;
-            _course.addPerson(this);
         }
     }
     

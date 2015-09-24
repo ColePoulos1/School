@@ -14,8 +14,10 @@ public class School {
         Person jill = Person.addPerson("Jill", Person.Gender.Female, 190, 1,13,2000);
         Person jack = Person.addPerson("Jack", Person.Gender.Male, 82, 1,21,2002);
         Person joanne = Person.addPerson("Joanne", Person.Gender.Female, 132, 3,3,2004);
-        Person john = Person.addPerson("John", Person.Gender.Male, 356, 9,23,2001);
-
+        Student john = Student.addStudent("John", Person.Gender.Male, 356, 9,23,2001, 9);
+        Student craig = Student.addStudent("Craig",Person.Gender.Male,168,2,4,1925,11);
+        weights1.addStudent(john);
+        
         System.out.println(joanne);
         System.out.println(" ");
         Person.printNames(Person.Gender.Male);
@@ -30,9 +32,6 @@ public class School {
         System.out.println(" ");
         System.out.println(jill.getAge());
         System.out.println(" ");
-        
-        Student craig = Student.addStudent("Craig",Person.Gender.Male,168,2,4,25,11);
-       // Student bobby = new Student("Bobby",Person.Gender.Male,168,2,4,25,11);
-        System.out.println(craig.getName());
+        Student.printNames();
     }
 }

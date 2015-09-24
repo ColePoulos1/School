@@ -1,15 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package school;
 
-/**
- *
- * @author 147003480
- */
 public class Student extends Person {
     private int gradeLevel;
+    private Course theCourse;
     
     public static Student addStudent(String _name, Gender _gender, int _weight, int _month, int _day, int _year, int _gradeLevel)
     {
@@ -24,12 +18,34 @@ public class Student extends Person {
         gradeLevel = _gradeLevel;
     }
     
-    public int getgradeLevel()
+    public int getGradeLevel()
     {
         return(gradeLevel);
     }
-    public void setgradeLevel(int _grade)
+    public void setGradeLevel(int _grade)
     {
         gradeLevel = _grade;
+    }
+    public String getCourseName()
+    {
+        return(theCourse.getName());
+    }
+        
+    public void addCourse(Course _course)
+    {
+        if(theCourse == null)
+        {
+            theCourse = _course;
+            _course.addStudent(this);
+        }
+    }
+    public static void printNames()
+    {
+        System.out.println("Names of all Students:");
+        for (Person temp : people)
+        {
+            if (temp instanceof Student)
+                System.out.println(temp.getName());
+        }
     }
 }

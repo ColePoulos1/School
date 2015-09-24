@@ -7,7 +7,7 @@ public class Course {
         Math, Science, English, History, Elective, PE, Language
     }
     private static ArrayList<Course> courses = new ArrayList<Course>();
-    private Person thePerson;
+    private Student theStudent;
     private String name;
     private int period;
     private Type type;
@@ -80,12 +80,12 @@ public class Course {
         }
     }
     
-    public void addPerson(Person _person)
+    public void addStudent(Student _student)
     {
-        if(_person == null)
+        if(theStudent == null)
         {
-            thePerson = _person;
-            _person.addCourse(this);
+            theStudent = _student;
+            _student.addCourse(this);
         }
     }
     
