@@ -6,11 +6,13 @@ public class Course {
     enum Type {
         Math, Science, English, History, Elective, PE, Language
     }
+    public static final int numPeriods = 4;
     private static ArrayList<Course> courses = new ArrayList<Course>();
-    private Student theStudent;
+    private Teacher theTeacher;
     private String name;
     private int period;
     private Type type;
+    private ArrayList<Student> students = new ArrayList<Student>();
     
     public static Course addCourse(String _name, Type _type, int _period)
     {
@@ -55,8 +57,43 @@ public class Course {
     {
         return(period);
     }
+    public ArrayList getStudents()
+    {
+       return(students);
+    }
+    public String getTeacherName()
+    {
+        if(theTeacher !=null)
+        return(theTeacher.getName());
+        else
+            return(" ");
+    }
+    public boolean setTeacherOK(Teacher _teacher)
+    {
+        if (theTeacher == null)
+        return(true);
+        else
+            return(false);
+    }
+    public boolean addTeacher(Teacher _teacher)
+    {
+        if(!_teacher.setCourseOK(this))
+            return(false);
+        if(!setTeacherOK(_teacher))
+            return(false);
+        else
+        {
+            addTeacherDoIt(_teacher);
+            _teacher.addCourseDoIt(this);
+            return(true);
+        }  
+    }
+    public void addTeacherDoIt(Teacher _teacher)
+    {
+        theTeacher = _teacher;
+    }
     
-    public static void printNames()
+    public static void printCourseNames()
     {
         System.out.println("All courses:");
         for (Course temp : courses)
@@ -67,7 +104,7 @@ public class Course {
             }
         }
     }
-    public static void printNames(Type _type)
+    public static void printCourseNames(Type _type)
     {
         System.out.println("Names of " + _type + " type courses:");
         for (Course temp : courses)
@@ -80,13 +117,31 @@ public class Course {
         }
     }
     
-    public void addStudent(Student _student)
+    public boolean setStudentOK(Student _student)
     {
-        if(theStudent == null)
+        if(_student != null)
+            return(true);
+        else
+            return(false);
+    }
+    
+    public boolean addStudent(Student _student, double gradeScore)
+    {
+        if(!_student.setCourseOK(this))
+            return(false);
+        if(!setStudentOK(_student))
+            return(false);
+        else
         {
-            theStudent = _student;
-            _student.addCourse(this);
+            addStudentDoIt(_student);
+            _student.addCourseDoIt(this, gradeScore);
+            return(true);
         }
+        
+    }
+    public void addStudentDoIt(Student _student)
+    {
+        students.add(_student); 
     }
     
     public String toString()
