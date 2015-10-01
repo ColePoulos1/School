@@ -12,11 +12,12 @@ public class Course {
     private String name;
     private int period;
     private Type type;
+    private boolean honors;
     private ArrayList<Student> students = new ArrayList<Student>();
     
-    public static Course addCourse(String _name, Type _type, int _period)
+    public static Course addCourse(String _name, Type _type, int _period, boolean _honors)
     {
-        Course temp = new Course(_name,_type,_period);
+        Course temp = new Course(_name,_type,_period,_honors);
         courses.add(temp);
         return(temp);
     }
@@ -26,12 +27,14 @@ public class Course {
         name = "Blank";
         period = 0;
         type = Type.Elective;
+        honors = false;
     }
-    Course(String _name, Type _type, int _period)
+    Course(String _name, Type _type, int _period, boolean _honors)
     {
         name = _name;
         type = _type;
         period = _period;
+        honors = _honors;
     }
     public void setName(String _name)
     {
@@ -56,6 +59,14 @@ public class Course {
     public int getPeriod()
     {
         return(period);
+    }
+    public void setHonors(boolean _honors)
+    {
+        honors = _honors;
+    }
+    public boolean getHonors()
+    {
+        return(honors);
     }
     public ArrayList getStudents()
     {
@@ -95,7 +106,7 @@ public class Course {
     
     public static void printCourseNames()
     {
-        System.out.println("All courses:");
+        System.out.println("Names of all courses:");
         for (Course temp : courses)
         {
             if (temp != null)

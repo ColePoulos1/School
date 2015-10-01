@@ -9,21 +9,18 @@ public class Teacher extends Person {
     private Course courses[] = new Course[Course.numPeriods];
     
     public static Teacher addTeacher(String _name, Gender _gender, int _weight,
-                                     int _month, int _day, int _year, int _gradeLevel, double _meanLevel)
+                                     int _month, int _day, int _year, double _meanLevel)
     {
-        Teacher temp = new Teacher(_name,_gender, _weight, _month, _day, _year, _gradeLevel, _meanLevel);
+        Teacher temp = new Teacher(_name,_gender, _weight, _month, _day, _year, _meanLevel);
         addPerson(temp);
         return(temp);
     }
     
     Teacher(String _name, Gender _gender, int _weight, int _month, int _day,
-            int _year, int _gradeLevel, double _meanLevel)
+            int _year, double _meanLevel)
     {
         super(_name, _gender, _weight, _month, _day, _year);
-        if(gradeLevel < 13 && gradeLevel > 8)
-        gradeLevel = _gradeLevel;
-        else
-            gradeLevel = 0;
+
         meanLevel = _meanLevel;
         if(meanLevel < 0.0)
             meanLevel = 0;
@@ -91,18 +88,63 @@ public class Teacher extends Person {
                 System.out.println(temp.getName());
         }
     }
-    public void printStudentNames(int _period)
+    public void printStudentNames()
     {
-        ArrayList<Student> stud = courses[_period-1].getStudents();
-        System.out.println("Name of Students:");
-        if (courses[_period -1] != null)
+        System.out.println("Names of " + super.getName() + "'s Students:");
+        for(int index = 0; index < Course.numPeriods; index++)
         {
-            for(Student temp : stud)
+            if (courses[index] != null)
             {
-                System.out.println(temp.getName());
+                ArrayList<Student> stud = courses[index].getStudents();
+                for(Student temp : stud)
+                {
+                    System.out.println(temp.getName());
+                }
             }
         }
-        else
-            System.out.println("No Course");
+    }
+    
+    public void printStudentNames(int _gradeLevel)
+    {
+        System.out.println("Names of " + super.getName() + "'s Students:");
+        for(int index = 0; index < Course.numPeriods; index++)
+        {
+            if (courses[index] != null)
+            {
+                ArrayList<Student> stud = courses[index].getStudents();
+                for(Student temp : stud)
+                {
+                    if(temp.getGradeLevel() == _gradeLevel)
+                    System.out.println(temp.getName());
+                }
+            }
+        }
+    }
+    
+    public static Teacher getMostElectives()
+    {
+        Teacher curMMM = null;
+        double cm = 0;
+        for (Person temp : people)
+        {
+            if (temp instanceof Teacher)
+            {
+                double counter = 0;
+                for(int index = 0; index < Course.numPeriods; index++)
+                {
+                    if(((Teacher)temp).courses[index] != null)
+                    {
+                        if(((Teacher)temp).courses[index].getType() == Course.Type.Elective)
+                            counter++;
+                    }
+                }
+                if(counter >= cm)
+                {
+                    curMMM = (Teacher)temp;
+                    cm = counter;
+                }
+            }
+        }
+        return(curMMM);
     }
 }

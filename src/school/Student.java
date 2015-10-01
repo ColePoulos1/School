@@ -37,16 +37,69 @@ public class Student extends Person {
     public double getGPA()
     {
         int numvalid = 0;
-        double gpa = 0;
+        double _gpa = 0;
         for(int index = 0; index < Course.numPeriods; index++)
         {
             if(courses[index] != null)
-            {    numvalid++;
-                gpa += gradeScores[index];
+            {   
+                numvalid++;
+                _gpa += gradeScores[index];
             }
         }
-        gpa /= numvalid;
-        return(gpa);
+        if(numvalid == 0)
+            return(0);
+        _gpa /= numvalid;
+        return(_gpa);
+    }
+    
+    public static Student getHighestGPA()
+    {
+        Student curH = null;
+        for (Person temp : people)
+        {
+            if (temp instanceof Student)
+            {
+                if(curH == null || ((Student)temp).getGPA() > curH.getGPA())
+                {
+                    curH = ((Student)temp);
+                }
+            }
+        }
+        return(curH);
+    }
+    
+    public static void printGPAGreaterThan(double _req)
+    {
+        System.out.println("Names of Students of GPA Greater Than " + _req + ":");
+        for (Person temp : people)
+        {
+            if (temp instanceof Student)
+            {
+                if(((Student)temp).getGPA() > _req)
+                    System.out.println(temp.getName());
+            }
+        }
+    }
+    
+    public static void printHonorsStudents()
+    {
+        System.out.println("Names of Students That Take Honors Classes:");
+        for (Person temp : people)
+        {
+            if (temp instanceof Student)
+            {
+                for (int index = 0; Course.numPeriods > index; index++)
+                {
+                    if(((Student)temp).courses[index] != null && 
+                       ((Student)temp).courses[index].getHonors() == true)
+                    {
+                        System.out.println(((Student)temp).getName());
+                        index = Course.numPeriods;
+                    }
+                    
+                }
+            }
+        }
     }
     
     public boolean setCourseOK(Course _course)
