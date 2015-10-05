@@ -5,8 +5,8 @@ public class School {
     public static void main(String[] args) {
         
         Student joe =  Student.addStudent("Joe",Person.Gender.Male,165,2,21,1990,10);
-        Student jill =  Student.addStudent("Jill",Person.Gender.Female,105,2,21,1990,9);
-        Student bobby =  Student.addStudent("Bobby",Person.Gender.Male,168,2,21,1990,11);        
+        Student jill =  Student.addStudent("Jill",Person.Gender.Female,105,2,21,1990,11);
+        Student bobby =  Student.addStudent("Bobby",Person.Gender.Male,168,2,21,1990,10);        
         Student ann =  Student.addStudent("Annie",Person.Gender.Female,98,2,21,1990,12);        
         Student sean =  Student.addStudent("Sean",Person.Gender.Male,138,2,21,1990,11);        
                 
@@ -15,7 +15,7 @@ public class School {
         Teacher anderson = Teacher.addTeacher("Anderson", Person.Gender.Female, 112,2,21,1990,3.2);
         Teacher smith = Teacher.addTeacher("Smith", Person.Gender.Male, 152,2,21,1990,8.2);
         
-        Course geom =  Course.addCourse("Geometry", Course.Type.Math, 1, false);
+        Course geom =  Course.addCourse("Geometry", Course.Type.Math, 1, true);
         Course photo =  Course.addCourse("Photography", Course.Type.Elective, 3, false);       
         Course biology =  Course.addCourse("Biology", Course.Type.Science, 2, false);       
         Course worldHistory =  Course.addCourse("WorldHistory", Course.Type.History, 2, true);       
@@ -24,13 +24,12 @@ public class School {
 
         geom.addStudent(bobby,3.5);
         photo.addStudent(bobby,3.0);
-        biology.addStudent(bobby,4.0);
-        
+        biology.addStudent(bobby,4.0);        
         geom.addStudent(jill,2.8);
         jill.addCourse(chemistry, 3.4);
         
         worldHistory.addStudent(ann,4.0);
-        ann.addCourse(photo, 3.7);
+        ann.addCourse(chemistry, 3.7);
         ann.addCourse(worldHistory, 3.3);
         
         worldHistory.addStudent(sean,3.6);
@@ -57,10 +56,9 @@ public class School {
         System.out.println(Teacher.getMostElectives());
                    System.out.println(" ");
         Student.printHonorsStudents();
-        
-        
-        
-        
-        
-    }
+                   System.out.println(" ");
+        System.out.println(bobby.getLeastMeanTeacher().getName());
+                   System.out.println(" ");
+        Teacher.printThatTeachesGradeLevel(12);
+   }
 }

@@ -79,6 +79,12 @@ public class Course {
         else
             return(" ");
     }
+    
+    public Teacher getTeacher()
+    {
+        return(theTeacher);
+    }
+    
     public boolean setTeacherOK(Teacher _teacher)
     {
         if (theTeacher == null)

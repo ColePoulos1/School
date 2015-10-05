@@ -102,6 +102,24 @@ public class Student extends Person {
         }
     }
     
+    public Teacher getLeastMeanTeacher()
+    {
+        Teacher lmean = null;
+        for (int index = 0; Course.numPeriods > index; index++)
+        {
+            if (courses[index] != null)
+            {
+                Teacher tempo = courses[index].getTeacher();
+                if(tempo!=null)
+                {
+                if(lmean == null || tempo.getMeanLevel() < lmean.getMeanLevel())
+                    lmean = tempo;
+                }
+            }
+        }
+        return(lmean);
+    }
+    
     public boolean setCourseOK(Course _course)
     {
         if (_course == null)
