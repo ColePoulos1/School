@@ -10,6 +10,7 @@ public class School {
                                                    ,jobsType.ASSISTNT_PRINCIPAL,6000);
         administrators AnasAlalwi = new administrators(new Teacher("AnasAlalwi", Person.Gender.Male, 100,20,9,2000,5.0)
                                                    ,jobsType.COUNSELOR,5000);
+        
         Student joe =  Student.addStudent("Joe",Person.Gender.Male,165,2,21,1990,10);
         Student jill =  Student.addStudent("Jill",Person.Gender.Female,105,2,21,1990,11);
         Student bobby =  Student.addStudent("Bobby",Person.Gender.Male,168,2,21,1990,10);
